@@ -7,8 +7,8 @@ namespace News.Persistence.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Domain.News> builder)
         {
-            builder.HasKey(news => news.NewsId);
-            builder.HasIndex(news => news.NewsId);
+            builder.HasKey(news => news.Id);
+            builder.HasIndex(news => news.Id);
             builder.Property(news => news.Title).HasMaxLength(150);
             builder.Property(news => news.Content).HasDefaultValue(null);
             builder.Property(news => news.CreationDate);

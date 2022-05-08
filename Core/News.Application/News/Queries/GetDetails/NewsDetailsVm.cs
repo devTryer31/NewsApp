@@ -1,19 +1,15 @@
-﻿using System;
+﻿using News.Application.Common.Mappings;
+using System;
 
-namespace News.Domain
+namespace News.Application.News.Queries.GetDetails
 {
-    public class News
+    public class NewsDetailsVm : IMapWith<Domain.News>
     {
         public Guid Id { get; set; }
-
         public string Title { get; set; }
-
         public string Content { get; set; }
-
         public DateTime CreationDate { get; set; }
-
         public DateTime? LastModifiedDate { get; set; }
 
-        public Guid UserId { get; set; }
     }
 }
