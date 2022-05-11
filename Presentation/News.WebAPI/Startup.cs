@@ -7,6 +7,7 @@ using News.Application;
 using News.Application.Common.Mappings;
 using News.Application.Interfaces;
 using News.Persistence;
+using News.WebAPI.MiddleWare;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -41,6 +42,7 @@ namespace News.WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCustomExceptionHandler();
 
             app.UseRouting();
 
