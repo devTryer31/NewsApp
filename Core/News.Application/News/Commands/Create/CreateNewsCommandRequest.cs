@@ -3,7 +3,7 @@ using System;
 
 namespace News.Application.News.Commands.Create
 {
-    public class CreateNewsCommandReques : IRequest<Guid>
+    public class CreateNewsCommandRequest : IRequest<Guid>
     {
         public Guid UserId { get; set; }
 

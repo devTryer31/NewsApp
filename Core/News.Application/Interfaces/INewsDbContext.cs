@@ -9,5 +9,7 @@ namespace News.Application.Interfaces
         DbSet<Domain.News> News { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+
+        bool Initialize();
     }
 }

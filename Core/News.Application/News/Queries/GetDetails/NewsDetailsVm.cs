@@ -3,7 +3,8 @@ using System;
 
 namespace News.Application.News.Queries.GetDetails
 {
-    public class NewsDetailsVm : IMapWith<Domain.News>
+    [MapWith(MapSourceType = typeof(Domain.News))]
+    public class NewsDetailsVm
     {
         public Guid Id { get; set; }
         public string Title { get; set; }

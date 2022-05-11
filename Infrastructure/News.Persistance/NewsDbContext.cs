@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using News.Application.Interfaces;
 using News.Persistence.EntityTypeConfigurations;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace News.Persistence
 {
@@ -15,5 +17,7 @@ namespace News.Persistence
             modelBuilder.ApplyConfiguration(new NewsConfiguration());
             base.OnModelCreating(modelBuilder);
         }
+
+        public bool Initialize() => Database.EnsureCreated();
     }
 }
