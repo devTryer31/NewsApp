@@ -3,7 +3,8 @@ using System;
 
 namespace News.Application.News.Queries.GetNewsTitlesList
 {
-    public class NewsLookupDto : IMapWith<Domain.News>
+    [MapWith(MapSourceType = typeof(Domain.News))]
+    public class NewsLookupDto
     {
         public Guid Id { get; set; }
         public string Title { get; set; }

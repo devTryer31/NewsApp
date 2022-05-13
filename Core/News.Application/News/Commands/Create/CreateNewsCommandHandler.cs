@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using News.Application.Interfaces;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
-using News.Application.Interfaces;
 
 namespace News.Application.News.Commands.Create
 {
-    public class CreateNewsCommandHandler : MediatR.IRequestHandler<CreateNewsCommandReques, Guid>
+    public class CreateNewsCommandHandler : MediatR.IRequestHandler<CreateNewsCommandRequest, Guid>
     {
         private readonly INewsDbContext newsDb;
 
         public CreateNewsCommandHandler(INewsDbContext newsDb) => this.newsDb = newsDb;
 
-        public async Task<Guid> Handle(CreateNewsCommandReques request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateNewsCommandRequest request, CancellationToken cancellationToken)
         {
             Domain.News news = new()
             {

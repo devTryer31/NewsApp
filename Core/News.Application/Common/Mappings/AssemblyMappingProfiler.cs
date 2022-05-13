@@ -1,7 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
 using System.Linq;
 using System.Reflection;
-using AutoMapper;
 
 namespace News.Application.Common.Mappings
 {
@@ -11,17 +10,14 @@ namespace News.Application.Common.Mappings
 
         private void ApplyMappingFromAssembly(Assembly assembly)
         {
-            var assemblyTypes = assembly.GetTypes()
-                .Where(t =>
-                t.GetInterfaces().
-                Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapWith<>))
-                );
+            var assemblyTypes = assembly.GetExportedTypes().Where(t => t.GetCustomAttributes<MapWithAttribute>().Any()).ToList();
 
             foreach (var assemblyType in assemblyTypes)
             {
-
-                var obj = Activator.CreateInstance(assemblyType);
-                assemblyType.GetMethod("CreateMapping")?.Invoke(obj, new[] { this });
+                foreach (var attr in assemblyType.GetCustomAttributes<MapWithAttribute>())
+                {
+                    this.CreateMap(attr.MapSourceType, assemblyType);
+                }
             }
         }
     }
