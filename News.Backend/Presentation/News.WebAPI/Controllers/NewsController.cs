@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using News.Application.News.Commands.Create;
 using News.Application.News.Commands.Delete;
@@ -20,7 +21,7 @@ namespace News.WebAPI.Controllers
         public NewsController(IMediator mediator, IMapper mapper) =>
             (_mediator, _mapper) = (mediator, mapper);
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult<NewsTitlesListVm>> GetAll()
         {
             GetNewsTitilesListRequest request = new()
@@ -31,7 +32,7 @@ namespace News.WebAPI.Controllers
             return Ok(vm);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public async Task<ActionResult<NewsDetailsVm>> Get(Guid id)
         {
             GetNewsDetailsRequest request = new()
@@ -43,7 +44,7 @@ namespace News.WebAPI.Controllers
             return Ok(vm);
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<ActionResult<Guid>> Create([FromBody] Models.CreateNewsDto newsDto)
         {
             var request = _mapper.Map<CreateNewsCommandRequest>(newsDto);
@@ -54,7 +55,7 @@ namespace News.WebAPI.Controllers
             return Ok(id);
         }
 
-        [HttpPut]
+        [HttpPut, Authorize]
         public async Task<ActionResult> Update([FromBody] Models.UpdateNewsDto newsDto)
         {
             var request = _mapper.Map<UpdateNewsCommandRequest>(newsDto);
@@ -65,7 +66,7 @@ namespace News.WebAPI.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public async Task<ActionResult<NewsDetailsVm>> Delete(Guid id)
         {
             DeleteNewsCommandRequest request = new()

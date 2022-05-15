@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +35,19 @@ namespace News.WebAPI
                         ));
                 })
                 .AddControllers();
+
+            services.AddAuthentication(cfg =>
+            {
+                cfg.DefaultAuthenticateScheme = "NewsBearrer";
+                cfg.DefaultChallengeScheme = "NewsBearrer";
+
+            })
+                .AddJwtBearer("NewsBearrer", opt =>
+                {
+                    opt.Audience = "NewsWebApi";
+                    opt.Authority = Configuration.GetValue<string>("AuthorityURI");
+                    opt.RequireHttpsMetadata = false;
+                });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,7 +59,8 @@ namespace News.WebAPI
             app.UseCustomExceptionHandler();
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
