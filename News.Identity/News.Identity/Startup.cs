@@ -46,6 +46,21 @@ namespace News.Identity
                 .AddInMemoryIdentityResources(Configuration.IdentityResources)
                 .AddInMemoryClients(Configuration.ClientApps)
                 .AddDeveloperSigningCredential(); //Demonstration signature certificate.
+
+            services.ConfigureApplicationCookie(cfg =>
+            {
+                cfg.Cookie.Name = "News.Identity-GV";
+                cfg.LoginPath = "/Auth/Login";
+                cfg.LogoutPath = "/Auth/Logout";
+                cfg.Cookie.HttpOnly = true;
+                cfg.ExpireTimeSpan = System.TimeSpan.FromDays(30);
+                cfg.SlidingExpiration = false;
+                cfg.Cookie.SameSite = SameSiteMode.Strict;
+                cfg.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            });
+
+            services
+                .AddControllersWithViews();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -54,18 +69,16 @@ namespace News.Identity
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseRouting();
 
             app.UseIdentityServer();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

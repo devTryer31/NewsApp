@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "News.Persistence", "Infrast
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "News.WebAPI", "Presentation\News.WebAPI\News.WebAPI.csproj", "{2C5DCA55-7078-4251-B8FB-FE0584495B44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppConsole", "Tests\ConsoleAppConsole\ConsoleAppConsole.csproj", "{3DA46089-4245-48EF-8DC3-8FF8B7A6FA00}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,10 +41,6 @@ Global
 		{2C5DCA55-7078-4251-B8FB-FE0584495B44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C5DCA55-7078-4251-B8FB-FE0584495B44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C5DCA55-7078-4251-B8FB-FE0584495B44}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DA46089-4245-48EF-8DC3-8FF8B7A6FA00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DA46089-4245-48EF-8DC3-8FF8B7A6FA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DA46089-4245-48EF-8DC3-8FF8B7A6FA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DA46089-4245-48EF-8DC3-8FF8B7A6FA00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,7 +50,6 @@ Global
 		{32AED4DC-CA9D-4F55-9214-9478DA1A68C5} = {5CDDE7D7-CDA8-4E19-82FB-9460BB9D6AEE}
 		{46965A37-776A-45A1-9A75-2AF1FC07E5BF} = {77BBFD40-0A20-40EA-B05A-1381B15C5037}
 		{2C5DCA55-7078-4251-B8FB-FE0584495B44} = {D64A7A3D-AA4F-42BD-B216-1403C7C34C42}
-		{3DA46089-4245-48EF-8DC3-8FF8B7A6FA00} = {1742E329-98BB-4C11-B913-4958AFA14B25}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4389CF9-FA13-4412-9317-33B6E7848912}

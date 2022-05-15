@@ -1,0 +1,33 @@
+﻿@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="position-absolute top-50 start-50 translate-middle">
+
+
+    <form asp-controller="Auth" asp-action="Login" method="post" asp-antiforgery=true asp-route-returnUrl=@Model.ReturnURL >
+        <input type="hidden" asp-for=ReturnURL />
+        <div class="mb-3">Login form</div>
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input class="form-control" asp-for=Username />
+            <span asp-validation-for=Username></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input class="form-control" asp-for=Password />
+            <span asp-validation-for=Password></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Remember me</label>
+            <input class="form-check-input" asp-for=IsRememberMe value=false>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-secondary" type="submit">Sign In</button>
+        </div>
+    </form>
+
+    <div asp-validation-summary=ModelOnly></div>
+
+</div>
